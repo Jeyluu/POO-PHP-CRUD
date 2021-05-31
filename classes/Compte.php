@@ -1,6 +1,6 @@
 <?php
 /**
- * Objet compte bancaire
+ * Objet compte bancaire, Un objet par fichier.
  */
 class Compte 
 {
@@ -20,6 +20,8 @@ class Compte
     public $solde;
 
 
+
+    // Méthodes
     /**
      * Contructeur du compte bancaire
      *
@@ -55,6 +57,21 @@ class Compte
      */
     public function voirSolde(){
         return "Le solde du compte est de $this->solde €.";
+    }
+
+    /**
+     * Retire un montant du solde du compte
+     *
+     * @param float $montant montant à retirer
+     * @return void
+     */
+    public function retirer(float $montant){
+        //On vérifie le montant et le solde
+        if($montant > 0 && $this->solde >= $montant){
+            $this->solde -= $montant;
+        } else {
+            echo "Le montant que vous souhaitez retirer est invalide ou le solde de votre compte est insuffisant.";
+        }
     }
 }
 ?>

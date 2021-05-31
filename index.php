@@ -6,7 +6,9 @@
     $compte1 = new Compte("Jérémy",1800);
     
     //On dépose de l'argent sur le compte.
-    $compte1->deposer(0);
+    $compte1->deposer(200);
+
+    $compte1->retirer(100);
 
     echo "<pre>";
     var_dump($compte1);
