@@ -10,9 +10,13 @@
 
     $compte1->retirer(100);
 
+    // // echo $compte1->getTitulaire();
+    // $compte1->setTitulaire("");
+
     echo "<pre>";
     var_dump($compte1);
-    echo "</pre>";
+    echo"</pre>";
+
 
     
 

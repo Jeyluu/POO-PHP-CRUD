@@ -10,15 +10,16 @@ class Compte
      *
      * @var string
      */
-    public $titulaire;
-
+    private $titulaire;
     /**
      * Solde du compte
      *
      * @var float
      */
-    public $solde;
+    private $solde;
 
+    //Constantes
+    private const TAUX_INTERETS = 5;
 
 
     // Méthodes
@@ -35,6 +36,69 @@ class Compte
 
         //On attribue le montant à la propriété Solde
         $this->solde = $montant;
+    }
+
+    /**
+     * Méthode magique pour la conversion en chaîne de caractères
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "Vous visualisez le compte de {$this->titulaire}, le solde est de {$this->solde} euros";
+    }
+    
+
+    //Accesseurs
+    /**
+     * Getter de titulaire - Retourne la valeur du titulaire du compte
+     *
+     * @return string
+     */
+    public function getTitulaire(): string
+    {
+        return $this->titulaire;
+    }
+
+    /**
+     * Modifie le nom du titulaire et retourne l'objet
+     *
+     * @param string $nom Nom du titulaire
+     * @return Compte Compte bancaire
+     */
+    public function setTitulaire(string $nom): self
+    {
+        //On vérifie si on a un titulaire
+        if($nom != ""){
+            $this->titulaire = $nom;
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Retourne le solde du compte
+     *
+     * @return float solde du compte
+     */
+    public function getSolde(): float
+    {
+        return $this->solde;
+    }
+
+    /**
+     * Modifie le solde du compte
+     *
+     * @param float $montant Montant du solde
+     * @return self compte bancaire
+     */
+    public function setSolde(float $montant): self
+    {
+        if($montant >= 0){
+            $this->solde = $montant;
+        }
+
+        return $this;
     }
 
     /**
@@ -70,7 +134,18 @@ class Compte
         if($montant > 0 && $this->solde >= $montant){
             $this->solde -= $montant;
         } else {
-            echo "Le montant que vous souhaitez retirer est invalide ou le solde de votre compte est insuffisant.";
+            echo "Le montant que vous souhaitez retirer est invalide ou le solde de votre compte est insuffisant.". "<br>";
+        }
+
+        echo $this->decouvert();
+    }
+
+    private function decouvert()
+    {
+        if($this->solde < 0){
+            return "Vous êtes à découvert.";
+        }else{
+            return "Vous n'êtes pas à decouvert.";
         }
     }
 }
