@@ -1,32 +1,20 @@
 <?php
 // On charge le Fichier compte dans le dossier classes.
     require_once ("classes/Compte.php");
+    require_once ("classes/CompteCourant.php");
+    require_once ("classes/CompteEpargne.php");
+    require_once ("classes/CompteEpargneCourant.php");
 
     //On instancie le compte 1
-    $compte1 = new Compte("Jérémy",1800);
+    $compte1 = new CompteCourant('Jérémy', 500, 200);
+    $compte1->retirer(200);
+    // var_dump($compte1);
+    $compteEpargne = new CompteEpargneCourant('Jérémy', 200, 10, 200);
     
-    //On dépose de l'argent sur le compte.
-    $compte1->deposer(200);
+    var_dump($compteEpargne);
 
-    $compte1->retirer(100);
-
-    // // echo $compte1->getTitulaire();
-    // $compte1->setTitulaire("");
-
-    echo "<pre>";
-    var_dump($compte1);
-    echo"</pre>";
-
-
-    
-
-    //On instancie le compte 2
-    // $compte2 = new Compte("Mireille",989.50);
-    
-
-    // echo "<pre>";
-    // var_dump($compte2);
-    // echo "</pre>";
+    $compteEpargne->verserInteret();
+    $compteEpargne->retirer(300);
+    var_dump($compteEpargne);
 ?>
 
-<p><?= $compte1->voirSolde();?></p>

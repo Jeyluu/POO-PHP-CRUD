@@ -2,7 +2,7 @@
 /**
  * Objet compte bancaire, Un objet par fichier.
  */
-class Compte 
+abstract class Compte 
 {
     //propriétés
     /**
@@ -16,7 +16,7 @@ class Compte
      *
      * @var float
      */
-    private $solde;
+    protected $solde;
 
     //Constantes
     private const TAUX_INTERETS = 5;
@@ -136,17 +136,8 @@ class Compte
         } else {
             echo "Le montant que vous souhaitez retirer est invalide ou le solde de votre compte est insuffisant.". "<br>";
         }
-
-        echo $this->decouvert();
     }
 
-    private function decouvert()
-    {
-        if($this->solde < 0){
-            return "Vous êtes à découvert.";
-        }else{
-            return "Vous n'êtes pas à decouvert.";
-        }
-    }
+    
 }
 ?>
