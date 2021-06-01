@@ -1,20 +1,29 @@
 <?php
-// On charge le Fichier compte dans le dossier classes.
-    require_once ("classes/Compte.php");
-    require_once ("classes/CompteCourant.php");
-    require_once ("classes/CompteEpargne.php");
-    require_once ("classes/CompteEpargneCourant.php");
+
+use App\Autoloader;
+use App\Clients\Compte as CompteClient;
+use App\Banques\{CompteCourant,CompteEpargne};
+
+
+    require_once 'classes/Autoload.php';
+    Autoloader::register();
 
     //On instancie le compte 1
-    $compte1 = new CompteCourant('Jérémy', 500, 200);
+    $compte1 = new CompteCourant('Jérémy', 5000, 200);
     $compte1->retirer(200);
     // var_dump($compte1);
-    $compteEpargne = new CompteEpargneCourant('Jérémy', 200, 10, 200);
+    $compteEpargne = new CompteEpargne('Jérémy', 2000, 10, 200);
     
-    var_dump($compteEpargne);
+    // var_dump($compteEpargne);
 
     $compteEpargne->verserInteret();
     $compteEpargne->retirer(300);
+    
     var_dump($compteEpargne);
+
+    $client = new CompteClient;
+
+    var_dump($client);
+
 ?>
 
